@@ -1,0 +1,1 @@
+# dtdl-schema-generator
