@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleAppDTDLGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "--metamodel BridgePoint\\tools\\mc\\schema\\\\sql\\xtumlmc_schema.sql --base-datatype BridgePoint\\plugins\\org.xtuml.bp.pkg_7.1.0.202109242014\\globals\\Globals.xtuml --domainmodel workspace\\LaundromatInHotel\\models\\LaundromatInHotel --dtdlns dtmi:com:your_org --dtdlver 1 --gen-folder gen\\relationship"
+    }
+  }
+}

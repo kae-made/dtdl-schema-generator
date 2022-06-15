@@ -1,0 +1,67 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+    var dtDef = edtDef.CIMSuperClassS_DT();
+#>
+<#= indent #>"schema": {
+<#= indent #><#= indentDelta #>"@type": "Enum",
+<#= indent #><#= indentDelta #>"valueSchema": "string",
+<#= indent #><#= indentDelta #>"displayName": "<#= dtDef.Attr_Name #>",
+<#
+	if (!string.IsNullOrEmpty(dtDef.Attr_Descrip))
+	{
+        string descrip =  DTDLGenerator.GetDescription(dtDef, dtDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #>"displayName": "<#= descrip #>",
+<#
+	}
+#>
+<#= indent #><#= indentDelta #>"enumValues": [
+<#
+    var firstEnumDef = edtDef.LinkedFromR27().First();
+    while (true)
+    {
+        var prevEnumDef = firstEnumDef.LinkedToR56Precedes();
+        if (prevEnumDef == null)
+        {
+            break;
+        }
+        firstEnumDef = prevEnumDef;
+    }
+
+    var currentEnumDef = firstEnumDef;
+    while (true)
+    {
+        var enumName = currentEnumDef.Attr_Name;
+        var nextEnumDef = currentEnumDef.LinkedFromR56Succeeds();
+        string endl = "";
+        if (nextEnumDef != null)
+        {
+            endl = ",";
+        }
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #>{
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"name": "<#= currentEnumDef.Attr_Name #>",
+<#
+        if (!string.IsNullOrEmpty(currentEnumDef.Attr_Descrip))
+        {
+            string descrip =  DTDLGenerator.GetDescription(currentEnumDef, currentEnumDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #>"description": <#= descrip #>
+<#
+        }
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"enumValue": "<#= currentEnumDef.Attr_Name #>"
+<#= indent #><#= indentDelta #><#= indentDelta #>}<#= endl #>
+<#
+        if (nextEnumDef == null)
+        {
+            break;
+        }
+        currentEnumDef = nextEnumDef;
+    }
+#><#= indent #><#= indentDelta #>]
+<#= indent #>}

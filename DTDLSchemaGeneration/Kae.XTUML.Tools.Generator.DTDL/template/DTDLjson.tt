@@ -1,0 +1,143 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Kae.CIM.MetaModel.CIMofCIM" #>
+<#
+    string objId = DTDLGenerator.GetDTDLID(objDef.Attr_Key_Lett, nameSpace, modelVersion);
+    bool isExtendingClass = false;
+    string objComment = "";
+#>
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "<#= objId#>",
+  "@type": "Interface",
+<#
+    if (rSuperSubMode == R_SUPERSUB_Mode.Extends)
+    {
+        var extendsDef = GetBaseTarget(ref objComment);
+        if (!string.IsNullOrEmpty(extendsDef))
+        {
+            isExtendingClass = true;
+#>
+  "extends": [<#= extendsDef #>],
+<#
+        }
+    }
+    if (!string.IsNullOrEmpty(objComment))
+    {
+        objComment += " ";
+    }
+    objComment += $"auto generated - generator version={version}";
+#>
+  "comment": "<#= objComment #>",
+  "displayName": "<#= objDef.Attr_Name #>",
+<#
+    if (!string.IsNullOrEmpty(objDef.Attr_Descrip))
+    {
+        string descrip =DTDLGenerator.GetDescription(objDef, objDef.Attr_Descrip);
+#>
+  "description": "<#= descrip #>",
+<#
+    }
+#>
+  "contents": [
+<#
+    indent = "  " + indentDelta;
+    string content = "";
+    // for properties
+    var attrSet = objDef.LinkedFromR102();
+    var sbProp = new StringBuilder();
+    foreach (var attr in attrSet)
+    {
+        var attrDef = (CIMClassO_ATTR)attr;
+        var dtDef = attrDef.LinkedToR114();
+        // var dtName = DTDLGenerator.GetAttrDataTypeName(attrDef);
+        var oidaDefs = attrDef.LinkedOneSideR105();
+        string propertyName = attrDef.Attr_Name;
+        string comment = "";
+        if (oidaDefs.Count() > 0)
+        {
+            comment = GetIdentityAttrComment(oidaDefs, comment);
+        }
+        var rattr = attrDef.SubClassR106();
+        if (rattr is CIMClassO_RATTR)
+        {
+            var rattrDef = (CIMClassO_RATTR)rattr;
+            comment=GetRefAttrComment(rattrDef,comment);
+        }
+
+        if (IsNotReferenceAttribute(attrDef))
+        {
+            var propertyGen = new PropertyDef(indent, indentDelta, attr, comment, isExtendingClass);
+            var propertyDef = propertyGen.TransformText();
+            sbProp.Append(propertyDef);
+        }
+    }
+    string propertyDefs = sbProp.ToString();
+    if (!string.IsNullOrEmpty(propertyDefs))
+    {
+        content = propertyDefs.Substring(0, propertyDefs.LastIndexOf(","));
+    }
+
+    // for telemetries
+    var sbTlem = new StringBuilder();
+    var ismDef = objDef.LinkedFromR518();
+    CIMClassSM_SM smDef = null;
+    if (ismDef != null)
+    {
+        smDef = ismDef.CIMSuperClassSM_SM();
+    }
+    var asmDef = objDef.LinkedFromR519();
+    if (smDef ==null && asmDef != null)
+    {
+        smDef = asmDef.CIMSuperClassSM_SM();
+    }
+    if (smDef != null)
+    {
+        var evtDefs = smDef.LinkedFromR502();
+        foreach (var evtDef in evtDefs)
+        {
+            var telemetryGen = new TelemetryDef(indent, indentDelta, objDef, evtDef);
+            var telemetryDef = telemetryGen.TransformText();
+            sbTlem.Append(telemetryDef);
+        }
+    }
+    string telemetryDefs = sbTlem.ToString();
+    if (!string.IsNullOrEmpty(telemetryDefs)){
+        telemetryDefs = telemetryDefs.Substring(0, telemetryDefs.LastIndexOf(","));
+        content += "," + Environment.NewLine;
+        content += telemetryDefs;
+    }
+
+    // for command
+    var sbCmd = new StringBuilder();
+    var tfrDes = objDef.LinkedFromR115();
+    foreach (var tfrDef in tfrDes)
+    {
+        var commandGen = new CommandDef(indent, indentDelta, tfrDef);
+        var commandDef = commandGen.TransformText();
+        sbCmd.Append(commandDef);
+    }
+    string commandDefs = sbCmd.ToString();
+    if (!string.IsNullOrEmpty(commandDefs))
+    {
+        commandDefs = commandDefs.Substring(0, commandDefs.LastIndexOf(","));
+        content += "," + Environment.NewLine;
+        content += commandDefs;
+    }
+
+    // for relationship
+    var relationshipGen = new RelationshipDef(indent, indentDelta, nameSpace, modelVersion, objDef, rSuperSubMode);
+    var relationshipDef = relationshipGen.TransformText();
+    if (!string.IsNullOrEmpty(relationshipDef))
+    {
+        relationshipDef = relationshipDef.Substring(0, relationshipDef.LastIndexOf(","));
+        content += "," + Environment.NewLine;
+        content += relationshipDef;
+    }
+#>
+<#= content #>
+  ]
+}

@@ -1,0 +1,70 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#= indent #>{
+<#= indent #><#= indentDelta #>"@type": "Telemetry",
+<#= indent #><#= indentDelta #>"name": "<#= name #>",
+<#= indent #><#= indentDelta #>"displayName": "<#= displayName #>",
+<#
+	string endl = "";
+	if (!string.IsNullOrEmpty(smEvtDef.Attr_Descrip)) {
+		endl = ",";
+	}
+
+    var evtdiDefs = smEvtDef.LinkedFromR532();
+    if (evtdiDefs.Count() == 0)
+    {
+#>
+<#= indent #><#= indentDelta #>"schema": "dateTime"<#= endl #>
+<#
+    }
+    else
+    {
+#>
+<#= indent #><#= indentDelta #>"schema": {
+<#= indent #><#= indentDelta #><#= indentDelta #>"@type": "Object",
+<#= indent #><#= indentDelta #><#= indentDelta #>"fields": [
+<#
+        foreach(var evtdiDef in evtdiDefs)
+        {
+            var evtdiName = evtdiDef.Attr_Name;
+            var sdtDef = evtdiDef.LinkedToR524();
+
+            var schemaGen = new SchemaDef(indent + indentDelta + indentDelta + indentDelta + indentDelta, indentDelta, sdtDef);
+            var schema = schemaGen.TransformText();
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>{
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"name": "<#= evtdiDef.Attr_Name #>",
+<#
+            if (!string.IsNullOrEmpty(evtdiDef.Attr_Descrip))
+            {
+                var evtdiDescrip =  DTDLGenerator.GetDescription(evtdiDef, evtdiDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"description": "<#= evtdiDescrip #>",
+<#
+            }
+#>
+<#= schema #>
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>},
+<#
+        }
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>{
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"name": "<#= name #>_occurred",
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"description": "The timestamp when this telemetry occurres",
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"schema": "dateTime"
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>}
+<#= indent #><#= indentDelta #><#= indentDelta #>]
+<#= indent #><#= indentDelta #>}
+<#
+    }
+	if (!string.IsNullOrEmpty(smEvtDef.Attr_Descrip)) {
+        var evtDescrip =  DTDLGenerator.GetDescription(smEvtDef, smEvtDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #>"description": "<#= evtDescrip #>"
+<#
+	}
+#>
+<#= indent #>},

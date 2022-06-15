@@ -1,0 +1,49 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+    var dtDef = sdtDef.CIMSuperClassS_DT();
+#>
+<#= indent #>"schema": {
+<#= indent #><#= indentDelta #>"@type": "Object",
+<#= indent #><#= indentDelta #>"displayName": "<#= dtDef.Attr_Name #>",
+<#
+    if (!string.IsNullOrEmpty(dtDef.Attr_Descrip))
+    {
+        string descrip =  DTDLGenerator.GetDescription(dtDef, dtDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #>"description": "<#= descrip #>",
+<#
+    }
+#>
+<#= indent #><#= indentDelta #>"fields": [
+<#
+    var memberDefs = sdtDef.LinkedFromR44();
+    foreach (var memberDef in memberDefs)
+    {
+        var memberName = memberDef.Attr_Name;
+        var memberDtDef = memberDef.LinkedToR45();
+        var schemaDefGen = new SchemaDef(indent + indentDelta + indentDelta + indentDelta, indentDelta, memberDtDef);
+        var content = schemaDefGen.TransformText();
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #>{
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"name": "<#= memberDef.Attr_Name #>",
+<#
+
+        if (!string.IsNullOrEmpty(memberDef.Attr_Descrip))
+        {
+            string memberDescrip =  DTDLGenerator.GetDescription(memberDef, memberDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"description": "<#= memberDescrip #>",
+<#
+        }
+#>
+<#= content #>
+<#= indent #><#= indentDelta #><#= indentDelta #>}
+<#
+    }
+#>
+<#= indent #><#= indentDelta #>]
+<#= indent #>}

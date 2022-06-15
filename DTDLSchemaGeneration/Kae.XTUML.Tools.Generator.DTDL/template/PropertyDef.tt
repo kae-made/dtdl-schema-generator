@@ -1,0 +1,48 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#= indent #>{
+<#= indent #><#= indentDelta #>"@type": "Property",
+<#
+	string attrName = oattrDef.Attr_Name;
+	if (isExtendingClass && attrName == "current_state")
+	{
+		var objDef = oattrDef.LinkedToR102();
+        var kl = objDef.Attr_Key_Lett;
+		attrName = $"{attrName}_of_{kl}";
+	}
+#>
+<#= indent #><#= indentDelta #>"name": "<#= attrName #>",
+<#
+	string endl = "";
+	if (!string.IsNullOrEmpty(comment) || !string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
+		endl = ",";
+	}
+    var sdtDef = GetBaseDT();
+
+    var schemaGen = new SchemaDef(indent + indentDelta, indentDelta, sdtDef);
+    var schema = schemaGen.TransformText();
+#>
+<#= schema #><#= endl #>
+<#
+	if (!string.IsNullOrEmpty(comment)) {
+		if (string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
+			endl = "";
+		}
+		else {
+			endl = ",";
+		}
+#>
+<#= indent #><#= indentDelta #>"comment": "<#= comment #>"<#= endl #>
+<#
+	}
+	if (!string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
+	    string descrip =  DTDLGenerator.GetDescription(oattrDef, oattrDef.Attr_Descrip);
+#>
+<#= indent #><#= indentDelta #>"description": "<#= descrip #>"
+<#
+	}
+#>
+<#= indent #>},

@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kae.Tools.Generator" Version="1.2.0" />
+    <PackageReference Include="Kae.Utility.Logging" Version="1.0.0" />
+    <PackageReference Include="Kae.XTUML.Tools.CIModelResolver" Version="1.0.0" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="template\CommandDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CommandDef.cs</LastGenOutput>
+    </None>
+    <None Update="template\DTDLjson.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DTDLjson.cs</LastGenOutput>
+    </None>
+    <None Update="template\EnumDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EnumDef.cs</LastGenOutput>
+    </None>
+    <None Update="template\ObjectDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ObjectDef.cs</LastGenOutput>
+    </None>
+    <None Update="template\PropertyDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>PropertyDef.cs</LastGenOutput>
+    </None>
+    <None Update="template\RelationshipDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RelationshipDef.cs</LastGenOutput>
+    </None>
+    <None Update="template\SchemaDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SchemaDef.cs</LastGenOutput>
+    </None>
+    <None Update="template\TelemetryDef.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TelemetryDef.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="template\CommandDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommandDef.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\DTDLjson.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DTDLjson.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\EnumDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EnumDef.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\ObjectDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ObjectDef.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\PropertyDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PropertyDef.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\RelationshipDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RelationshipDef.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\SchemaDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SchemaDef.tt</DependentUpon>
+    </Compile>
+    <Compile Update="template\TelemetryDef.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TelemetryDef.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
