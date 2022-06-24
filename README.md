@@ -22,3 +22,6 @@
 - Relationships are defined in the class-side interface where the reference attribute is defined.
 - User can select extends or relationship style for super/sub relationship
 
+
+Please read [document for detail of this artifact](https://note.com/kae_made/n/n601de699e7d0). ※ Japanese document only.
+
