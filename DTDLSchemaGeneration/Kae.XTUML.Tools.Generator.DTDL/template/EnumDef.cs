@@ -29,7 +29,16 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         public virtual string TransformText()
         {
             
-            #line 6 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 1 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
+            
+            #line 10 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
     var dtDef = edtDef.CIMSuperClassS_DT();
 
@@ -37,60 +46,60 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 9 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 13 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             this.Write("\"schema\": {\r\n");
             
-            #line 10 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 14 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 10 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 14 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"@type\": \"Enum\",\r\n");
             
-            #line 11 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 15 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 11 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 15 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"valueSchema\": \"string\",\r\n");
             
-            #line 12 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 16 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 12 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 16 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"displayName\": \"");
             
-            #line 12 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 16 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(dtDef.Attr_Name));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 13 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 17 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
 	if (!string.IsNullOrEmpty(dtDef.Attr_Descrip))
 	{
@@ -100,27 +109,27 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 18 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 22 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 18 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 22 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"displayName\": \"");
             
-            #line 18 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 22 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(descrip));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 19 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 23 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
 	}
 
@@ -128,20 +137,20 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 22 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 26 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 26 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"enumValues\": [\r\n");
             
-            #line 23 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 27 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
     var firstEnumDef = edtDef.LinkedFromR27().First();
     while (true)
@@ -169,58 +178,58 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 46 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 46 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 46 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("{\r\n");
             
-            #line 47 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 51 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 47 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 51 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 47 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 51 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 47 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 51 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"name\": \"");
             
-            #line 47 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 51 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(currentEnumDef.Attr_Name));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 52 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
         if (!string.IsNullOrEmpty(currentEnumDef.Attr_Descrip))
         {
@@ -230,33 +239,33 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 53 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 53 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 53 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"description\": ");
             
-            #line 53 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(descrip));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 54 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 58 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
         }
 
@@ -264,65 +273,65 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 61 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 61 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 61 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 61 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"enumValue\": \"");
             
-            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 61 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(currentEnumDef.Attr_Name));
             
             #line default
             #line hidden
             this.Write("\"\r\n");
             
-            #line 58 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 62 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 58 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 62 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 58 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 62 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("}");
             
-            #line 58 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 62 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(endl));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 59 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 63 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
 
         if (nextEnumDef == null)
         {
@@ -335,20 +344,20 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 66 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 70 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 66 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 70 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("]\r\n");
             
-            #line 67 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
+            #line 71 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\EnumDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default

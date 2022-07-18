@@ -30,7 +30,16 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         public virtual string TransformText()
         {
             
-            #line 7 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 1 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+
+  // Copyright (c) Knowledge & Experience. All rights reserved.
+  // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+            
+            #line default
+            #line hidden
+            
+            #line 11 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     string objId = DTDLGenerator.GetDTDLID(objDef.Attr_Key_Lett, nameSpace, modelVersion);
     bool isExtendingClass = false;
@@ -41,14 +50,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("{\r\n  \"@context\": \"dtmi:dtdl:context;2\",\r\n  \"@id\": \"");
             
-            #line 14 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 18 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objId));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"@type\": \"Interface\",\r\n");
             
-            #line 16 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 20 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     if (rSuperSubMode == R_SUPERSUB_Mode.Extends)
     {
@@ -62,14 +71,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"extends\": [");
             
-            #line 24 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 28 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(extendsDef));
             
             #line default
             #line hidden
             this.Write("],\r\n");
             
-            #line 25 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 29 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
         }
     }
@@ -84,21 +93,21 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"comment\": \"");
             
-            #line 34 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 38 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objComment));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"displayName\": \"");
             
-            #line 35 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 39 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objDef.Attr_Name));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 40 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     if (!string.IsNullOrEmpty(objDef.Attr_Descrip))
     {
@@ -109,14 +118,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"description\": \"");
             
-            #line 41 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 45 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(descrip));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 42 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 46 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     }
 
@@ -125,7 +134,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"contents\": [\r\n");
             
-            #line 46 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     indent = "  " + indentDelta;
     string content = "";
@@ -225,7 +234,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 141 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 145 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(content));
             
             #line default
