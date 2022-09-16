@@ -63,7 +63,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
         {
             if (resolvedContext)
             {
-                modelResolver = new CIModelResolver.ConceptualInformationModelResolver();
+                modelResolver = new CIModelResolver.ConceptualInformationModelResolver(logger);
                 modelResolver.LoadOOAofOOA(MetaDataTypeDefFilePath, OOAofOOAModelFilePath);
                 logger.LogInfo($"Loaded ${OOAofOOAModelFilePath} as OOA of OOA model schmea");
                 loadedMetaModel = true;

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>Hiroshi Ota</Authors>
     <Company>Knowledge &amp; Experience</Company>
     <PackageProjectUrl>https://github.com/kae-made/dtdl-schema-generator</PackageProjectUrl>
@@ -15,7 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Kae.Tools.Generator" Version="1.2.0" />
     <PackageReference Include="Kae.Utility.Logging" Version="1.0.0" />
-    <PackageReference Include="Kae.XTUML.Tools.CIModelResolver" Version="1.0.0" />
+    <PackageReference Include="Kae.XTUML.Tools.CIModelResolver" Version="2.1.0" />
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
 

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kae.XTUML.Tools.Generator.DTDL\Kae.XTUML.Tools.Generator.DTDL.csproj" />
+    <PackageReference Include="Kae.XTUML.Tools.Generator.DTDL" Version="0.2.0" />
   </ItemGroup>
 
   <ItemGroup>
