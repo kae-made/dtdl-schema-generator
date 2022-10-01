@@ -6,6 +6,7 @@ using Kae.XTUML.Tools.Generator.DTDL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace ConsoleAppDTDLGenerator
@@ -43,7 +44,7 @@ namespace ConsoleAppDTDLGenerator
         {
             if (!string.IsNullOrEmpty(colorsFileName))
             {
-                generator.Coloring = new Kae.Tools.Generator.ColoringRepository();
+                generator.Coloring = new Kae.Tools.Generator.Coloring.Generator.ColoringRepository();
                 generator.Coloring.Load(colorsFileName);
             }
 
@@ -56,7 +57,7 @@ namespace ConsoleAppDTDLGenerator
 
         public bool ResloveArgs(string[] args)
         {
-            var contextParams = generator.ContextParams;
+            var contextParams = generator.GetContext();
             if (args.Length == 0)
             {
                 ShowCommandline();
@@ -69,45 +70,55 @@ namespace ConsoleAppDTDLGenerator
             {
                 if (args[index] == "--metamodel")
                 {
-                    var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyOOAofOOAModelFilePath).First();
+                    // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyOOAofOOAModelFilePath).First();
                     options.Remove(args[index]);
-                    ((PathSelectionParam)cp).Path = args[++index];
+                    // ((PathSelectionParam)cp).Path = args[++index];
+                    string metaModelPath = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyOOAofOOAModelFilePath, (metaModelPath, !File.Exists(metaModelPath)));
                 }
                 else if (args[index] == "--meta-datatype")
                 {
-                    var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyMetaDataTypeDefFilePath).First();
-                    ((PathSelectionParam)cp).Path = args[++index];
+                    // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyMetaDataTypeDefFilePath).First();
+                    // ((PathSelectionParam)cp).Path = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyMetaDataTypeDefFilePath, (args[++index], false));
                 }
                 else if (args[index] == "--base-datatype")
                 {
-                    var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyBaseDataTypeDefFilePaht).First();
+                    // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyBaseDataTypeDefFilePaht).First();
                     options.Remove(args[index]);
-                    ((PathSelectionParam)cp).Path = args[++index];
+                    // ((PathSelectionParam)cp).Path = args[++index];
+                    string baseDatatypePath = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyBaseDataTypeDefFilePaht, (baseDatatypePath, !File.Exists(baseDatatypePath)));
                 }
                 else if (args[index] == "--domainmodel")
                 {
-                    var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDomainModelFilePath).First();
+                    // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDomainModelFilePath).First();
                     options.Remove(args[index]);
-                    ((PathSelectionParam)cp).Path= args[++index];
+                    // ((PathSelectionParam)cp).Path= args[++index];
                     // domainModelFilePath = args[index];
+                    string domainModelPath = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyDomainModelFilePath, (domainModelPath, !File.Exists(domainModelPath)));
                 }
                 else if (args[index] == "--dtdlns")
                 {
-                    var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDTDLNameSpace).First();
+                    // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDTDLNameSpace).First();
                     options.Remove(args[index]);
-                    ((StringParam)cp).Value = args[++index];
+                    // ((StringParam)cp).Value = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyDTDLNameSpace, args[++index]);
                 }
                 else if (args[index]=="--dtdlver")
                 {
-                    var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDTDLModelVersion).First();
+                    // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDTDLModelVersion).First();
                     options.Remove(args[index]);
-                    ((StringParam)cp).Value = args[++index];
+                    // ((StringParam)cp).Value = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyDTDLModelVersion, args[++index]);
                 }
                 else if (args[index] == "--gen-folder")
                 {
-                    var cp = contextParams.Where(c=>c.ParamName==DTDLGenerator.CPKeyGenFolderPath).First();
+                    // var cp = contextParams.Where(c=>c.ParamName==DTDLGenerator.CPKeyGenFolderPath).First();
                     options.Remove(args[index]);
-                    ((PathSelectionParam)cp).Path = args[++index];
+                    // ((PathSelectionParam)cp).Path = args[++index];
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyGenFolderPath, (args[++index],true));
                 }
                 else if (args[index] == "--colors")
                 {

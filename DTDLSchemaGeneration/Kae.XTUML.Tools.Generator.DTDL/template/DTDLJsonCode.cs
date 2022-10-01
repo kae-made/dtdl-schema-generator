@@ -3,6 +3,7 @@
 using Kae.CIM;
 using Kae.CIM.MetaModel.CIMofCIM;
 using Kae.Tools.Generator;
+using Kae.Tools.Generator.Coloring.Generator;
 using System;
 using System.Collections.Generic;
 using System.Linq;

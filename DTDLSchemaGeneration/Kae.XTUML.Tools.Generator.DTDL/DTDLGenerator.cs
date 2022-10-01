@@ -3,6 +3,8 @@
 using Kae.CIM;
 using Kae.CIM.MetaModel.CIMofCIM;
 using Kae.Tools.Generator;
+using Kae.Tools.Generator.Coloring.DomainWeaving;
+using Kae.Tools.Generator.Coloring.Generator;
 using Kae.Tools.Generator.Context;
 using Kae.Tools.Generator.utility;
 using Kae.Utility.Logging;
@@ -21,18 +23,24 @@ namespace Kae.XTUML.Tools.Generator.DTDL
         private static readonly string CIMOOAofOOADomainName = "OOAofOOA";
         public string Version { get { return version; } set { version = value; } }
 
-        private List<Kae.Tools.Generator.Context.ContextParam> contextParams = new List<ContextParam>();
-        public IList<ContextParam> ContextParams { get { return contextParams; } }
+        // private List<Kae.Tools.Generator.Context.ContextParam> contextParams = new List<ContextParam>();
+        //public IList<ContextParam> ContextParams { get { return contextParams; } }
 
         public IList<string> DomainModels { get; set; }
 
         public ColoringRepository Coloring { get; set; }
+
+        protected ColoringManager coloringManager;
 
         private GenFolder genFolder;
         public GenFolder GenFolder
         {
             get { return genFolder; }
         }
+
+        public string DomainName { get { return CIMOOAofOOADomainName; } }
+
+        public ColoringManager ColoringManagerForDomainWeaving { get { return coloringManager; } }
 
         public DTDLGenerator(Logger logger, string version=null)
         {
@@ -87,7 +95,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                 throw new ApplicationException("This method should be called after calling LoadMetaModel()!");
             }
         }
-        public void Generate()
+        public void GenerateContents()
         {
             if (!loadedDomainModels)
             {
@@ -124,7 +132,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                 var dtdlJson = dtdlGen.TransformText();
 
                 string dtdlFileName = $"{objDef.Attr_Key_Lett}.json";
-                genFolder.WriteContentAsync(".", dtdlFileName, dtdlJson).Wait();
+                genFolder.WriteContentAsync(".", dtdlFileName, dtdlJson, GenFolder.WriteMode.Overwrite).Wait();
                 Console.WriteLine($"Generated : {dtdlFileName}");
             }
         }
@@ -402,19 +410,26 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             var genFolderPath = new PathSelectionParam(CPKeyGenFolderPath) { IsFolder = true };
             var dtdlNamespace = new StringParam(CPKeyDTDLNameSpace);
             var dtdlModelVersion = new StringParam(CPKeyDTDLModelVersion);
-            contextParams.Add(ooaOfOOAModelFilePath);
-            contextParams.Add(domainModelFilePath);
-            contextParams.Add(metaDataTypeDefFilePath);
-            contextParams.Add(baseDataTypeDefFilePath);
-            contextParams.Add(genFolderPath);
-            contextParams.Add(dtdlNamespace);
-            contextParams.Add(dtdlModelVersion);
+            // contextParams.Add(ooaOfOOAModelFilePath);
+            // contextParams.Add(domainModelFilePath);
+            // contextParams.Add(metaDataTypeDefFilePath);
+            // contextParams.Add(baseDataTypeDefFilePath);
+            // contextParams.Add(genFolderPath);
+            // contextParams.Add(dtdlNamespace);
+            // contextParams.Add(dtdlModelVersion);
+            generatorContext.AddOption(ooaOfOOAModelFilePath);
+            generatorContext.AddOption(domainModelFilePath);
+            generatorContext.AddOption(metaDataTypeDefFilePath);
+            generatorContext.AddOption(baseDataTypeDefFilePath);
+            generatorContext.AddOption(genFolderPath);
+            generatorContext.AddOption(dtdlNamespace);
+            generatorContext.AddOption(dtdlModelVersion);
         }
 
         public void ResolveContext()
         {
             var index = 0;
-            foreach (var c in contextParams)
+            foreach (var c in generatorContext.Options)
             {
                 if (c.ParamName == CPKeyOOAofOOAModelFilePath)
                 {
@@ -453,11 +468,27 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                     index++;
                 }
             }
-            if (index != contextParams.Count)
+            if (index != generatorContext.Options.Count)
             {
                 throw new ArgumentOutOfRangeException("some context parameters are missing!");
             }
             resolvedContext = true;
+        }
+
+        protected GeneratorContext generatorContext = new GeneratorContext();
+        public GeneratorContext GetContext()
+        {
+            return generatorContext;
+        }
+
+        public bool GenerateEnvironment()
+        {
+            return true;
+        }
+
+        public void Generate()
+        {
+            GenerateContents();
         }
     }
 }

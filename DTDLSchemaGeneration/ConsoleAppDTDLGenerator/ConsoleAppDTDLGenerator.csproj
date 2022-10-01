@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kae.XTUML.Tools.Generator.DTDL" Version="0.2.0" />
+    <ProjectReference Include="..\Kae.XTUML.Tools.Generator.DTDL\Kae.XTUML.Tools.Generator.DTDL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
