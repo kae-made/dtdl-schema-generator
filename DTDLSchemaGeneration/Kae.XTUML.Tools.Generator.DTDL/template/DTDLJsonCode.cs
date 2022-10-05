@@ -28,6 +28,8 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         string indent;
         string indentDelta = "  ";
 
+        bool isIoTPnP = false;
+
         ColoringRepository coloringRepository;
 
         private R_SUPERSUB_Mode rSuperSubMode;
@@ -35,13 +37,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         //   R_SUBSUP:
         //     subsupgen: relationship|extends
 
-        public DTDLjson(string nameSpace, string modelVersion, CIMClassO_OBJ objDef, string version, ColoringRepository coloringRepository)
+        public DTDLjson(string nameSpace, string modelVersion, CIMClassO_OBJ objDef, bool isIoTPnP, string version, ColoringRepository coloringRepository)
         {
             this.version = version;
             this.objDef = objDef;
             this.nameSpace = nameSpace;
             this.modelVersion = modelVersion;
             this.coloringRepository = coloringRepository;
+            this.isIoTPnP = isIoTPnP;
 
             this.rSuperSubMode = R_SUPERSUB_Mode.Relationship;
 
@@ -62,6 +65,22 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
                     }
                 }
             }
+        }
+
+        private string GetFieldType(CIMClassO_ATTR attrDef)
+        {
+            string result = "Property";
+
+            if (isIoTPnP)
+            {
+                string descrip = attrDef.Attr_Descrip;
+                if (descrip.IndexOf("@telemetry") > 0)
+                {
+                    result = "Telemetry";
+                }
+            }
+
+            return result;
         }
 
         public void prototype2()
@@ -107,8 +126,24 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
                     comment=GetRefAttrComment(rattrDef,comment);
                     relAttrs.Add(rattrDef);
                 }
+                else if (rattr is CIMClassO_BATTR)
+                {
+                    var subBAttrDef = ((CIMClassO_BATTR)(rattr)).SubClassR107();
+                    if (subBAttrDef is CIMClassO_DBATTR)
+                    {
 
-                var propertyGen = new PropertyDef(indent, indentDelta, attr, comment);
+                    }
+                    else if (subBAttrDef is CIMClassO_NBATTR)
+                    {
+
+                    }
+                }
+                if (attrDef.Attr_Descrip.IndexOf("@readonly") >= 0)
+                {
+
+                }
+
+                var propertyGen = new PropertyDef(indent, indentDelta, attr, comment, null);
                 var propertyDef = propertyGen.TransformText();
                 sbProp.Append(propertyDef);
             }

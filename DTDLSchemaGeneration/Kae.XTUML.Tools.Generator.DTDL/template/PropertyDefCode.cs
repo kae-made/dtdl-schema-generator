@@ -15,14 +15,30 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         private string indentDelta;
         private CIMClassO_ATTR oattrDef;
         private string comment;
+        private string fieldType = "Property";
         bool isExtendingClass;
+        bool writable = true;
 
-        public PropertyDef(string indent, string indentDelta, CIMClassO_ATTR oattrDef, string comment, bool isExtendingClass=false)
+        IoTPnPColoringForAttribute iotPnPPropColor;
+
+        public PropertyDef(string indent, string indentDelta, CIMClassO_ATTR oattrDef, string comment, IoTPnPColoringForAttribute colors,  bool isExtendingClass=false)
         {
             this.indent = indent;
             this.indentDelta = indentDelta;
             this.oattrDef = oattrDef;
             this.comment = comment;
+            this.iotPnPPropColor = colors;
+            if (colors!=null && colors.IsCurrentIoTPnP)
+            {
+                if (iotPnPPropColor.IsTelemetry)
+                {
+                    fieldType = "Telemetry";
+                }
+                if (iotPnPPropColor.IsReadOnly)
+                {
+                    writable = false;
+                }
+            }
             this.isExtendingClass = isExtendingClass;
         }
 

@@ -8,7 +8,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#= indent #>{
-<#= indent #><#= indentDelta #>"@type": "Property",
+<#= indent #><#= indentDelta #>"@type": "<#= fieldType #>",
 <#
 	string attrName = oattrDef.Attr_Name;
 	if (isExtendingClass && attrName == "current_state")
@@ -19,6 +19,14 @@
 	}
 #>
 <#= indent #><#= indentDelta #>"name": "<#= attrName #>",
+<#
+	if (writable==false)
+	{
+#>
+<#= indent #><#= indentDelta #>"writable": false,
+<#
+	}
+#>
 <#
 	string endl = "";
 	if (!string.IsNullOrEmpty(comment) || !string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {

@@ -10,6 +10,12 @@
 <#@ import namespace="Kae.CIM.MetaModel.CIMofCIM" #>
 <#
     string objId = DTDLGenerator.GetDTDLID(objDef.Attr_Key_Lett, nameSpace, modelVersion);
+    string adtObjId = "";
+    if (isIoTPnP)
+    {
+        adtObjId = objId;
+        objId =  DTDLGenerator.GetDTDLID($"{objDef.Attr_Key_Lett}:iotpnp", nameSpace, modelVersion);
+    }
     bool isExtendingClass = false;
     string objComment = "";
 #>
@@ -31,7 +37,11 @@
     }
     if (!string.IsNullOrEmpty(objComment))
     {
-        objComment += " ";
+        objComment += "\\\\n";
+    }
+    if (!string.IsNullOrEmpty(adtObjId))
+    {
+        objComment = $"target-dtdlid='{adtObjId}'\\\\n";
     }
     objComment += $"auto generated - generator version={version}";
 #>
@@ -40,7 +50,7 @@
 <#
     if (!string.IsNullOrEmpty(objDef.Attr_Descrip))
     {
-        string descrip =DTDLGenerator.GetDescription(objDef, objDef.Attr_Descrip);
+        string descrip = DTDLGenerator.GetDescription(objDef, objDef.Attr_Descrip);
 #>
   "description": "<#= descrip #>",
 <#
@@ -56,27 +66,47 @@
     foreach (var attr in attrSet)
     {
         var attrDef = (CIMClassO_ATTR)attr;
-        var dtDef = attrDef.LinkedToR114();
-        // var dtName = DTDLGenerator.GetAttrDataTypeName(attrDef);
-        var oidaDefs = attrDef.LinkedOneSideR105();
-        string propertyName = attrDef.Attr_Name;
-        string comment = "";
-        if (oidaDefs.Count() > 0)
+        IoTPnPColoringForAttribute iotPnPColors = new IoTPnPColoringForAttribute(attrDef.Attr_Descrip);
+        bool generate = true;
+        if (isIoTPnP)
         {
-            comment = GetIdentityAttrComment(oidaDefs, comment);
+            if (iotPnPColors.IsExclude)
+            {
+                generate = false;
+            }
+            iotPnPColors.ChangeMode(isIoTPnP);
         }
-        var rattr = attrDef.SubClassR106();
-        if (rattr is CIMClassO_RATTR)
+        if (generate)
         {
-            var rattrDef = (CIMClassO_RATTR)rattr;
-            comment=GetRefAttrComment(rattrDef,comment);
-        }
-
-        if (IsNotReferenceAttribute(attrDef))
-        {
-            var propertyGen = new PropertyDef(indent, indentDelta, attr, comment, isExtendingClass);
-            var propertyDef = propertyGen.TransformText();
-            sbProp.Append(propertyDef);
+            var dtDef = attrDef.LinkedToR114();
+            // var dtName = DTDLGenerator.GetAttrDataTypeName(attrDef);
+            var oidaDefs = attrDef.LinkedOneSideR105();
+            string propertyName = attrDef.Attr_Name;
+            string comment = "";
+            if (oidaDefs.Count() > 0)
+            {
+                comment = GetIdentityAttrComment(oidaDefs, comment);
+                if (isIoTPnP==false)
+                {
+                    if (iotPnPColors.IsDeviceId)
+                    {
+                        comment += ",@deviceid";
+                    }
+                }
+            }
+            var rattr = attrDef.SubClassR106();
+            if (rattr is CIMClassO_RATTR)
+            {
+                var rattrDef = (CIMClassO_RATTR)rattr;
+                comment=GetRefAttrComment(rattrDef,comment);
+            }
+    
+            if (IsNotReferenceAttribute(attrDef))
+            {
+                var propertyGen = new PropertyDef(indent, indentDelta, attr, comment, iotPnPColors, isExtendingClass);
+                var propertyDef = propertyGen.TransformText();
+                sbProp.Append(propertyDef);
+            }
         }
     }
     string propertyDefs = sbProp.ToString();
@@ -133,13 +163,16 @@
     }
 
     // for relationship
-    var relationshipGen = new RelationshipDef(indent, indentDelta, nameSpace, modelVersion, objDef, rSuperSubMode);
-    var relationshipDef = relationshipGen.TransformText();
-    if (!string.IsNullOrEmpty(relationshipDef))
+    if (isIoTPnP==false)
     {
-        relationshipDef = relationshipDef.Substring(0, relationshipDef.LastIndexOf(","));
-        content += "," + Environment.NewLine;
-        content += relationshipDef;
+        var relationshipGen = new RelationshipDef(indent, indentDelta, nameSpace, modelVersion, objDef, rSuperSubMode);
+        var relationshipDef = relationshipGen.TransformText();
+        if (!string.IsNullOrEmpty(relationshipDef))
+        {
+            relationshipDef = relationshipDef.Substring(0, relationshipDef.LastIndexOf(","));
+            content += "," + Environment.NewLine;
+            content += relationshipDef;
+        }
     }
 #>
 <#= content #>

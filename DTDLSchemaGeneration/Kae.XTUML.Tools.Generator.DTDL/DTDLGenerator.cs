@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Kae.XTUML.Tools.Generator.DTDL
@@ -60,6 +61,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
         private string GenFolderPath;
         private string DTDLNameSpace;
         private string DTDLModelVersion;
+        private bool UseKeyLettAsFileName = false;
 
         private bool resolvedContext = false;
         private bool loadedMetaModel = false;
@@ -128,13 +130,42 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             {
                 var objDef = (CIMClassO_OBJ)classDef;
                 // prototype(objDef);
-                var dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, Version, Coloring);
+                bool isIoTPnP = false;
+                var dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, isIoTPnP, Version, Coloring);
                 var dtdlJson = dtdlGen.TransformText();
 
-                string dtdlFileName = $"{objDef.Attr_Key_Lett}.json";
+                string dtdlFileName = GetDTDLFileName(objDef);
                 genFolder.WriteContentAsync(".", dtdlFileName, dtdlJson, GenFolder.WriteMode.Overwrite).Wait();
                 Console.WriteLine($"Generated : {dtdlFileName}");
+
+                if (objDef.Attr_Descrip.IndexOf("@iotpnp") >= 0)
+                {
+                    isIoTPnP = true;
+                    dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, isIoTPnP, Version, Coloring);
+                    dtdlJson = dtdlGen.TransformText();
+
+                    //dtdlFileName = $"{objDef.Attr_Key_Lett}_iotpnp.json";
+                    dtdlFileName = GetDTDLFileName(objDef, true);
+                    genFolder.WriteContentAsync(".", dtdlFileName, dtdlJson, GenFolder.WriteMode.Overwrite).Wait();
+                    Console.WriteLine($"Generated : {dtdlFileName}");
+                }
+
             }
+        }
+
+        protected string GetDTDLFileName(CIMClassO_OBJ objDef, bool isIoTPnP = false)
+        {
+            string result = objDef.Attr_Key_Lett;
+            if (UseKeyLettAsFileName == false)
+            {
+                var regex = new Regex(" ");
+                result = regex.Replace(objDef.Attr_Name, "_");
+            }
+            if (isIoTPnP)
+            {
+                result += "_iotpnp";
+            }
+            return result + ".json";
         }
 
         public static string GetDTDLID(string elemName, string nameSpace, string modelVersion)
@@ -400,6 +431,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
         public static readonly string CPKeyDTDLNameSpace = "dtdl-ns";
         public static readonly string CPKeyDTDLModelVersion = "dtdl-mv";
         public static readonly string CPKeyBaseDataTypeDefFilePaht = "base-datatype-path";
+        public static readonly string CPKeyUseKeyLetterAsFileName = "use-keyletter";
 
         private void CreateContext()
         {
@@ -410,6 +442,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             var genFolderPath = new PathSelectionParam(CPKeyGenFolderPath) { IsFolder = true };
             var dtdlNamespace = new StringParam(CPKeyDTDLNameSpace);
             var dtdlModelVersion = new StringParam(CPKeyDTDLModelVersion);
+            var useKeyLett = new BooleanParam(CPKeyUseKeyLetterAsFileName);
             // contextParams.Add(ooaOfOOAModelFilePath);
             // contextParams.Add(domainModelFilePath);
             // contextParams.Add(metaDataTypeDefFilePath);
@@ -424,6 +457,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             generatorContext.AddOption(genFolderPath);
             generatorContext.AddOption(dtdlNamespace);
             generatorContext.AddOption(dtdlModelVersion);
+            generatorContext.AddOption(useKeyLett);
         }
 
         public void ResolveContext()
@@ -465,6 +499,11 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                 else if (c.ParamName == CPKeyDTDLModelVersion)
                 {
                     DTDLModelVersion = ((StringParam)c).Value;
+                    index++;
+                }
+                else if (c.ParamName == CPKeyUseKeyLetterAsFileName)
+                {
+                    UseKeyLettAsFileName = ((BooleanParam)c).Value;
                     index++;
                 }
             }

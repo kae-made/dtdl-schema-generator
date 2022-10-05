@@ -106,7 +106,7 @@ namespace ConsoleAppDTDLGenerator
                     // ((StringParam)cp).Value = args[++index];
                     contextParams.SetOptionValue(DTDLGenerator.CPKeyDTDLNameSpace, args[++index]);
                 }
-                else if (args[index]=="--dtdlver")
+                else if (args[index] == "--dtdlver")
                 {
                     // var cp = contextParams.Where(c => c.ParamName == DTDLGenerator.CPKeyDTDLModelVersion).First();
                     options.Remove(args[index]);
@@ -118,7 +118,16 @@ namespace ConsoleAppDTDLGenerator
                     // var cp = contextParams.Where(c=>c.ParamName==DTDLGenerator.CPKeyGenFolderPath).First();
                     options.Remove(args[index]);
                     // ((PathSelectionParam)cp).Path = args[++index];
-                    contextParams.SetOptionValue(DTDLGenerator.CPKeyGenFolderPath, (args[++index],true));
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyGenFolderPath, (args[++index], true));
+                }
+                else if (args[index] == "--use-keylett")
+                {
+                    bool useKeyLett = true;
+                    if (args.Length > index + 1 && args[index + 1].StartsWith("--") == false)
+                    {
+                        useKeyLett = bool.Parse(args[++index]);
+                    }
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyUseKeyLetterAsFileName, useKeyLett);
                 }
                 else if (args[index] == "--colors")
                 {
@@ -151,7 +160,8 @@ namespace ConsoleAppDTDLGenerator
             Console.WriteLine("  --dtdlns           : namespace of DTDL ID. style is 'dtmi:org:domain");
             Console.WriteLine("  --dtdlver          : version of DTDL ID 1|2|3|...");
             Console.WriteLine("  --gen-folder       : folder path for generation");
-            Console.WriteLine("  --colors           : file path of coloring when you use coloring feature");
+            Console.WriteLine("  --colors           : optional - file path of coloring when you use coloring feature");
+            Console.WriteLine("  --use-keylett      : optional - use key letter of class for dtdl file name without any param or true|false ");
         }
     }
 }

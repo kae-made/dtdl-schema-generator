@@ -56,7 +56,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             
             #line default
             #line hidden
-            this.Write("\"@type\": \"Property\",\r\n");
+            this.Write("\"@type\": \"");
+            
+            #line 11 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(fieldType));
+            
+            #line default
+            #line hidden
+            this.Write("\",\r\n");
             
             #line 12 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
 
@@ -94,6 +101,36 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             
             #line 22 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
 
+	if (writable==false)
+	{
+
+            
+            #line default
+            #line hidden
+            
+            #line 26 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(indent));
+            
+            #line default
+            #line hidden
+            
+            #line 26 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
+            
+            #line default
+            #line hidden
+            this.Write("\"writable\": false,\r\n");
+            
+            #line 27 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+
+	}
+
+            
+            #line default
+            #line hidden
+            
+            #line 30 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+
 	string endl = "";
 	if (!string.IsNullOrEmpty(comment) || !string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
 		endl = ",";
@@ -107,20 +144,20 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 32 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 40 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(schema));
             
             #line default
             #line hidden
             
-            #line 32 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 40 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(endl));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 33 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 41 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
 
 	if (!string.IsNullOrEmpty(comment)) {
 		if (string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
@@ -134,34 +171,34 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 42 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 42 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"comment\": \"");
             
-            #line 42 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(comment));
             
             #line default
             #line hidden
             this.Write("\"");
             
-            #line 42 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(endl));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 43 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 51 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
 
 	}
 	if (!string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
@@ -171,27 +208,27 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 56 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 56 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"description\": \"");
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 56 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(descrip));
             
             #line default
             #line hidden
             this.Write("\"\r\n");
             
-            #line 49 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
 
 	}
 
@@ -199,7 +236,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 52 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
+            #line 60 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\PropertyDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
