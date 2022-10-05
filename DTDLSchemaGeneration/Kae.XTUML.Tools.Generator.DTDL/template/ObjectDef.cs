@@ -140,6 +140,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line 26 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
 
     var memberDefs = sdtDef.LinkedFromR44();
+    int memberIndex = 0;
     foreach (var memberDef in memberDefs)
     {
         var memberName = memberDef.Attr_Name;
@@ -151,58 +152,58 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 35 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 35 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 35 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("{\r\n");
             
-            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 37 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 37 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 37 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 37 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"name\": \"");
             
-            #line 36 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 37 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(memberDef.Attr_Name));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 37 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 38 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
 
 
         if (!string.IsNullOrEmpty(memberDef.Attr_Descrip))
@@ -213,73 +214,86 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 43 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 44 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 43 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 44 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 43 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 44 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 43 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 44 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("\"description\": \"");
             
-            #line 43 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 44 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(memberDescrip));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 44 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 45 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
 
+        }
+        memberIndex++;
+        string comma = ",";
+        if (memberIndex == memberDefs.Count())
+        {
+            comma = "";
         }
 
             
             #line default
             #line hidden
             
-            #line 47 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 54 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(content));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 55 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 55 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 55 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
-            this.Write("}\r\n");
+            this.Write("}");
             
-            #line 49 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 55 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(comma));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 56 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
 
     }
 
@@ -287,25 +301,25 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 52 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 59 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
             
-            #line 52 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 59 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indentDelta));
             
             #line default
             #line hidden
             this.Write("]\r\n");
             
-            #line 53 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
+            #line 60 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\ObjectDef.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(indent));
             
             #line default
             #line hidden
-            this.Write("}\r\n");
+            this.Write("}");
             return this.GenerationEnvironment.ToString();
         }
     }

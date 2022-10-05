@@ -25,6 +25,7 @@
 <#= indent #><#= indentDelta #>"fields": [
 <#
     var memberDefs = sdtDef.LinkedFromR44();
+    int memberIndex = 0;
     foreach (var memberDef in memberDefs)
     {
         var memberName = memberDef.Attr_Name;
@@ -43,9 +44,15 @@
 <#= indent #><#= indentDelta #><#= indentDelta #><#= indentDelta #>"description": "<#= memberDescrip #>",
 <#
         }
+        memberIndex++;
+        string comma = ",";
+        if (memberIndex == memberDefs.Count())
+        {
+            comma = "";
+        }
 #>
 <#= content #>
-<#= indent #><#= indentDelta #><#= indentDelta #>}
+<#= indent #><#= indentDelta #><#= indentDelta #>}<#= comma #>
 <#
     }
 #>
