@@ -92,7 +92,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
     }
     else if (subSdtDef is CIMClassS_UDT)
     {
-        if (sdtDef.Attr_Name == "timestamp" || sdtDef.Attr_Name == "inst_ref<Timer>")
+        if (sdtDef.Attr_Name == "timestamp" || sdtDef.Attr_Name == "date" || sdtDef.Attr_Name == "inst_ref<Timer>")
         {
             string typeName = dtToDTDLDataType[sdtDef.Attr_Name];
 

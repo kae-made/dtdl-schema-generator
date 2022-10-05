@@ -20,6 +20,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             { "integer", "integer" },
             { "real", "double" },
             { "timestamp", "dateTime" },
+            { "date", "dateTime" },
             { "string", "string" },
             { "state<State_Model>", "string" },
             { "inst_ref<Timer>", "string" }
