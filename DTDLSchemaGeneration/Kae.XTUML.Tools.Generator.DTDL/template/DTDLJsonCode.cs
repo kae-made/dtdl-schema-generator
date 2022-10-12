@@ -354,6 +354,31 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
                     comment += ",";
                 }
                 comment += $"I{oidDef.Attr_Oid_ID}";
+
+                var partingRels = new List<string>();
+                var rtidaDefs = oidaDef.LinkedOneSideR110();
+                foreach(var rtidaDef in rtidaDefs)
+                {
+                    var orefDefs = rtidaDef.LinkedOneSideR111();
+                    foreach(var orefDef in orefDefs)
+                    {
+                        var rgoDef = orefDef.LinkedOneSideR111();
+                        var relDef = rgoDef.CIMSuperClassR_OIR().LinkedOneSideR201();
+                        partingRels.Add($"R{relDef.Attr_Numb}");
+                    }
+                }
+                foreach(var relId in partingRels)
+                {
+                    if (string.IsNullOrEmpty(comment))
+                    {
+                        comment = "@";
+                    }
+                    else
+                    {
+                        comment += ",";
+                    }
+                    comment += $"P{relId}";
+                }
             }
             return comment;
         }
