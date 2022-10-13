@@ -57,7 +57,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
                 maxMultiplicity = "";
                 descrip = "";
                 CIMClassR_REL rrelDef = null;
-                CIMClassO_OBJ targetObjDef = GetRelSpec(orefDef, ref rrelDef, ref relName, ref minMultiplicity, ref maxMultiplicity, ref descrip);
+                CIMClassO_OBJ targetObjDef = GetRelSpec(rSuperSubMode, orefDef, ref rrelDef, ref relName, ref minMultiplicity, ref maxMultiplicity, ref descrip);
                 if (!string.IsNullOrEmpty(relName))
                 {
                     string target =  DTDLGenerator.GetDTDLID(targetObjDef.Attr_Key_Lett, nameSpace, modelVersion);

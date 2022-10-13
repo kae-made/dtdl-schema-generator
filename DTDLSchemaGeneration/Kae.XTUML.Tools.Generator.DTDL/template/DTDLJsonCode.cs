@@ -364,7 +364,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
                     {
                         var rgoDef = orefDef.LinkedOneSideR111();
                         var relDef = rgoDef.CIMSuperClassR_OIR().LinkedOneSideR201();
-                        partingRels.Add($"R{relDef.Attr_Numb}");
+                        string relName = "";
+                        string minMultiplicity = "";
+                        string maxMultiplicity = "";
+                        string descrip = "";
+                        CIMClassR_REL rrelDef = null;
+                        CIMClassO_OBJ targetObjDef = RelationshipDef.GetRelSpec(rSuperSubMode, orefDef, ref rrelDef, ref relName, ref minMultiplicity, ref maxMultiplicity, ref descrip);
+
+                        partingRels.Add(relName);
                     }
                 }
                 foreach(var relId in partingRels)

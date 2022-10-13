@@ -53,7 +53,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
                         maxMultiplicity = "";
                         descrip = "";
                         CIMClassR_REL rrelDef = null;
-                        CIMClassO_OBJ targetObjDef = GetRelSpec(orefDef,ref rrelDef, ref relName, ref minMultiplicity, ref maxMultiplicity, ref descrip);
+                        CIMClassO_OBJ targetObjDef = GetRelSpec(rSuperSubMode, orefDef, ref rrelDef, ref relName, ref minMultiplicity, ref maxMultiplicity, ref descrip);
                         string target = DTDLGenerator.GetDTDLID(targetObjDef.Attr_Key_Lett, nameSpace, modelVersion); 
                         if (!definedRels.Contains(relName))
                         {
@@ -71,7 +71,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             return $"{nameSpace}:{elemName};{modelVersion}";
         }
 
-        private CIMClassO_OBJ GetRelSpec(CIMClassO_REF orefDef,ref CIMClassR_REL rrelDef, ref string relName, ref string minMult, ref string maxMult, ref string desc)
+        public static CIMClassO_OBJ GetRelSpec(DTDLjson.R_SUPERSUB_Mode ssMode, CIMClassO_REF orefDef,ref CIMClassR_REL rrelDef, ref string relName, ref string minMult, ref string maxMult, ref string desc)
         {
             CIMClassO_OBJ targetObjDef = null;
             var rrgoDef = orefDef.LinkedOneSideR111();
@@ -88,7 +88,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             }
             else if (subRrgoDef is CIMClassR_SUB)
             {
-                if (rSuperSubMode == DTDLjson.R_SUPERSUB_Mode.Relationship)
+                if (ssMode == DTDLjson.R_SUPERSUB_Mode.Relationship)
                 {
                     var rsubDef = (CIMClassR_SUB)subRrgoDef;
                     rrelDef = rsubDef.LinkedToR213().CIMSuperClassR_REL();
@@ -172,7 +172,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             return targetObjDef;
         }
 
-        private string TranslateTxtPhrs(string txtPhrs)
+        public static string TranslateTxtPhrs(string txtPhrs)
         {
             var frags = txtPhrs.Split(new char[] { ' ' });
             string result = "";
