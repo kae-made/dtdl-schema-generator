@@ -26,6 +26,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             this.objDef = objDef;
 
             this.displayName = $"{objDef.Attr_Key_Lett}{smEvtDef.Attr_Numb}:{smEvtDef.Attr_Mning}";
+            this.name = $"{objDef.Attr_Key_Lett}_{smEvtDef.Attr_Numb}_";
             var frags = smEvtDef.Attr_Mning.Split(new char[] { ' '});
             foreach (var frag in frags)
             {
