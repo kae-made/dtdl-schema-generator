@@ -29,6 +29,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         string indentDelta = "  ";
 
         bool isIoTPnP = false;
+        bool isIoTPnPMarked = false;
 
         ColoringRepository coloringRepository;
 
@@ -45,6 +46,11 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             this.modelVersion = modelVersion;
             this.coloringRepository = coloringRepository;
             this.isIoTPnP = isIoTPnP;
+
+            if (objDef.Attr_Descrip.StartsWith("@iotpnp"))
+            {
+                this.isIoTPnPMarked = true;
+            }
 
             this.rSuperSubMode = R_SUPERSUB_Mode.Relationship;
 
@@ -67,6 +73,17 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             }
         }
 
+        private bool IsIoTPnPCommand(CIMClassO_TFR tfrDef)
+        {
+            bool result = false;
+
+            if (!string.IsNullOrEmpty(tfrDef.Attr_Descrip) && tfrDef.Attr_Descrip.StartsWith("@iotpnp"))
+            {
+                result = true;
+            }
+
+            return result;
+        }
         private string GetFieldType(CIMClassO_ATTR attrDef)
         {
             string result = "Property";

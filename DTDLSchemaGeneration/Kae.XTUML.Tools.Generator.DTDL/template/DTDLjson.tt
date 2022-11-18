@@ -11,13 +11,20 @@
 <#
     string objId = DTDLGenerator.GetDTDLID(objDef.Attr_Key_Lett, nameSpace, modelVersion);
     string adtObjId = "";
+    string objComment = "";
     if (isIoTPnP)
     {
         adtObjId = objId;
         objId =  DTDLGenerator.GetDTDLID($"{objDef.Attr_Key_Lett}:iotpnp", nameSpace, modelVersion);
     }
+    else
+    {
+        if (isIoTPnPMarked)
+        {
+            objComment = "@iotdevice - ";
+        }
+    }
     bool isExtendingClass = false;
-    string objComment = "";
 #>
 {
   "@context": "dtmi:dtdl:context;2",
@@ -146,20 +153,26 @@
     }
 
     // for command
-    var sbCmd = new StringBuilder();
-    var tfrDes = objDef.LinkedFromR115();
-    foreach (var tfrDef in tfrDes)
+    if (isIoTPnPMarked)
     {
-        var commandGen = new CommandDef(indent, indentDelta, tfrDef);
-        var commandDef = commandGen.TransformText();
-        sbCmd.Append(commandDef);
-    }
-    string commandDefs = sbCmd.ToString();
-    if (!string.IsNullOrEmpty(commandDefs))
-    {
-        commandDefs = commandDefs.Substring(0, commandDefs.LastIndexOf(","));
-        content += "," + Environment.NewLine;
-        content += commandDefs;
+        var sbCmd = new StringBuilder();
+        var tfrDes = objDef.LinkedFromR115();
+        foreach (var tfrDef in tfrDes)
+        {
+            if (IsIoTPnPCommand(tfrDef))
+            {
+                var commandGen = new CommandDef(indent, indentDelta, tfrDef);
+                var commandDef = commandGen.TransformText();
+                sbCmd.Append(commandDef);
+            }
+        }
+        string commandDefs = sbCmd.ToString();
+        if (!string.IsNullOrEmpty(commandDefs))
+        {
+            commandDefs = commandDefs.Substring(0, commandDefs.LastIndexOf(","));
+            content += "," + Environment.NewLine;
+            content += commandDefs;
+        }
     }
 
     // for relationship

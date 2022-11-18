@@ -43,27 +43,34 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
 
     string objId = DTDLGenerator.GetDTDLID(objDef.Attr_Key_Lett, nameSpace, modelVersion);
     string adtObjId = "";
+    string objComment = "";
     if (isIoTPnP)
     {
         adtObjId = objId;
         objId =  DTDLGenerator.GetDTDLID($"{objDef.Attr_Key_Lett}:iotpnp", nameSpace, modelVersion);
     }
+    else
+    {
+        if (isIoTPnPMarked)
+        {
+            objComment = "@iotdevice - ";
+        }
+    }
     bool isExtendingClass = false;
-    string objComment = "";
 
             
             #line default
             #line hidden
             this.Write("{\r\n  \"@context\": \"dtmi:dtdl:context;2\",\r\n  \"@id\": \"");
             
-            #line 24 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 31 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objId));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"@type\": \"Interface\",\r\n");
             
-            #line 26 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 33 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     if (rSuperSubMode == R_SUPERSUB_Mode.Extends)
     {
@@ -77,14 +84,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"extends\": [");
             
-            #line 34 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 41 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(extendsDef));
             
             #line default
             #line hidden
             this.Write("],\r\n");
             
-            #line 35 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 42 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
         }
     }
@@ -103,21 +110,21 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"comment\": \"");
             
-            #line 48 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 55 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objComment));
             
             #line default
             #line hidden
             this.Write("\",\r\n  \"displayName\": \"");
             
-            #line 49 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 56 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(objDef.Attr_Name));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 50 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 57 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     if (!string.IsNullOrEmpty(objDef.Attr_Descrip))
     {
@@ -128,14 +135,14 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"description\": \"");
             
-            #line 55 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 62 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(descrip));
             
             #line default
             #line hidden
             this.Write("\",\r\n");
             
-            #line 56 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 63 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     }
 
@@ -144,7 +151,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line hidden
             this.Write("  \"contents\": [\r\n");
             
-            #line 60 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 67 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
 
     indent = "  " + indentDelta;
     string content = "";
@@ -234,20 +241,26 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
     }
 
     // for command
-    var sbCmd = new StringBuilder();
-    var tfrDes = objDef.LinkedFromR115();
-    foreach (var tfrDef in tfrDes)
+    if (isIoTPnPMarked)
     {
-        var commandGen = new CommandDef(indent, indentDelta, tfrDef);
-        var commandDef = commandGen.TransformText();
-        sbCmd.Append(commandDef);
-    }
-    string commandDefs = sbCmd.ToString();
-    if (!string.IsNullOrEmpty(commandDefs))
-    {
-        commandDefs = commandDefs.Substring(0, commandDefs.LastIndexOf(","));
-        content += "," + Environment.NewLine;
-        content += commandDefs;
+        var sbCmd = new StringBuilder();
+        var tfrDes = objDef.LinkedFromR115();
+        foreach (var tfrDef in tfrDes)
+        {
+            if (IsIoTPnPCommand(tfrDef))
+            {
+                var commandGen = new CommandDef(indent, indentDelta, tfrDef);
+                var commandDef = commandGen.TransformText();
+                sbCmd.Append(commandDef);
+            }
+        }
+        string commandDefs = sbCmd.ToString();
+        if (!string.IsNullOrEmpty(commandDefs))
+        {
+            commandDefs = commandDefs.Substring(0, commandDefs.LastIndexOf(","));
+            content += "," + Environment.NewLine;
+            content += commandDefs;
+        }
     }
 
     // for relationship
@@ -267,7 +280,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
             #line default
             #line hidden
             
-            #line 178 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
+            #line 191 "C:\Users\kae-m\source\repos\xtMULMetaModelProjects\Kae.XTUML.Tools.Generator.DTDL\template\DTDLjson.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(content));
             
             #line default
