@@ -129,6 +129,15 @@ namespace ConsoleAppDTDLGenerator
                     }
                     contextParams.SetOptionValue(DTDLGenerator.CPKeyUseKeyLetterAsFileName, useKeyLett);
                 }
+                else if (args[index]== "--use-extends")
+                {
+                    bool useExtends = true;
+                    if (args.Length>index+1 && args[index+1].StartsWith("--") == false)
+                    {
+                        useExtends = bool.Parse(args[++index]);
+                    }
+                    contextParams.SetOptionValue(DTDLGenerator.CPKeyUseKeyLetterAsFileName, !useExtends);
+                }
                 else if (args[index] == "--colors")
                 {
                     colorsFileName = args[++index];

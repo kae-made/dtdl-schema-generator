@@ -38,11 +38,12 @@ namespace Kae.XTUML.Tools.Generator.DTDL.template
         //   R_SUBSUP:
         //     subsupgen: relationship|extends
 
-        public DTDLjson(string nameSpace, string modelVersion, CIMClassO_OBJ objDef, bool isIoTPnP, string version, ColoringRepository coloringRepository)
+        public DTDLjson(string nameSpace, string modelVersion, CIMClassO_OBJ objDef, R_SUPERSUB_Mode superSubMode, bool isIoTPnP, string version, ColoringRepository coloringRepository)
         {
             this.version = version;
             this.objDef = objDef;
             this.nameSpace = nameSpace;
+            this.rSuperSubMode = superSubMode;
             this.modelVersion = modelVersion;
             this.coloringRepository = coloringRepository;
             this.isIoTPnP = isIoTPnP;

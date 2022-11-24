@@ -8,6 +8,7 @@ using Kae.Tools.Generator.Coloring.Generator;
 using Kae.Tools.Generator.Context;
 using Kae.Tools.Generator.utility;
 using Kae.Utility.Logging;
+using Kae.XTUML.Tools.Generator.DTDL.template;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -62,6 +63,8 @@ namespace Kae.XTUML.Tools.Generator.DTDL
         private string DTDLNameSpace;
         private string DTDLModelVersion;
         private bool UseKeyLettAsFileName = false;
+        DTDLjson.R_SUPERSUB_Mode superSubMode = DTDLjson.R_SUPERSUB_Mode.Relationship;
+        
 
         private bool resolvedContext = false;
         private bool loadedMetaModel = false;
@@ -105,7 +108,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             }
             var modelRepository = modelResolver.ModelRepository;
             var attrDefs = modelRepository.GetCIInstances(CIMOOAofOOADomainName, "O_ATTR");
-            var objAttrNum = new Dictionary<string,int>();
+            var objAttrNum = new Dictionary<string, int>();
             foreach (var attrDef in attrDefs)
             {
                 var oattrDef = (CIMClassO_ATTR)attrDef;
@@ -125,13 +128,13 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             var sysDef = modelRepository.GetCIInstances(CIMOOAofOOADomainName, "S_SYS").First();
             DTDLNameSpace += $":{((CIMClassS_SYS)sysDef).Attr_Name}";
 
-            var classDefs = modelRepository.GetCIInstances(CIMOOAofOOADomainName,"O_OBJ");
-            foreach(var classDef in classDefs)
+            var classDefs = modelRepository.GetCIInstances(CIMOOAofOOADomainName, "O_OBJ");
+            foreach (var classDef in classDefs)
             {
                 var objDef = (CIMClassO_OBJ)classDef;
                 // prototype(objDef);
                 bool isIoTPnP = false;
-                var dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, isIoTPnP, Version, Coloring);
+                var dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, superSubMode, isIoTPnP, Version, Coloring);
                 var dtdlJson = dtdlGen.TransformText();
 
                 string dtdlFileName = GetDTDLFileName(objDef);
@@ -141,7 +144,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                 if (objDef.Attr_Descrip.IndexOf("@iotpnp") >= 0)
                 {
                     isIoTPnP = true;
-                    dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, isIoTPnP, Version, Coloring);
+                    dtdlGen = new template.DTDLjson(DTDLNameSpace, DTDLModelVersion, objDef, superSubMode, isIoTPnP, Version, Coloring);
                     dtdlJson = dtdlGen.TransformText();
 
                     //dtdlFileName = $"{objDef.Attr_Key_Lett}_iotpnp.json";
@@ -432,6 +435,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
         public static readonly string CPKeyDTDLModelVersion = "dtdl-mv";
         public static readonly string CPKeyBaseDataTypeDefFilePaht = "base-datatype-path";
         public static readonly string CPKeyUseKeyLetterAsFileName = "use-keyletter";
+        public static readonly string CPKeySuperSubRelationship = "supersub-relationship";
 
         private void CreateContext()
         {
@@ -443,6 +447,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             var dtdlNamespace = new StringParam(CPKeyDTDLNameSpace);
             var dtdlModelVersion = new StringParam(CPKeyDTDLModelVersion);
             var useKeyLett = new BooleanParam(CPKeyUseKeyLetterAsFileName);
+            var supersubRel = new BooleanParam(CPKeySuperSubRelationship);
             // contextParams.Add(ooaOfOOAModelFilePath);
             // contextParams.Add(domainModelFilePath);
             // contextParams.Add(metaDataTypeDefFilePath);
@@ -458,6 +463,7 @@ namespace Kae.XTUML.Tools.Generator.DTDL
             generatorContext.AddOption(dtdlNamespace);
             generatorContext.AddOption(dtdlModelVersion);
             generatorContext.AddOption(useKeyLett);
+            generatorContext.AddOption(supersubRel);
         }
 
         public void ResolveContext()
@@ -504,6 +510,18 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                 else if (c.ParamName == CPKeyUseKeyLetterAsFileName)
                 {
                     UseKeyLettAsFileName = ((BooleanParam)c).Value;
+                    index++;
+                }
+                else if (c.ParamName == CPKeySuperSubRelationship){
+                    var ssRel = ((BooleanParam)c).Value;
+                    if (ssRel)
+                    {
+                        superSubMode = DTDLjson.R_SUPERSUB_Mode.Extends;
+                    }
+                    else
+                    {
+                        superSubMode = DTDLjson.R_SUPERSUB_Mode.Relationship;
+                    }
                     index++;
                 }
             }
