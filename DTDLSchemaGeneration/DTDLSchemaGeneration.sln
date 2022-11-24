@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kae.XTUML.Tools.Generator.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppDTDLGenerator", "ConsoleAppDTDLGenerator\ConsoleAppDTDLGenerator.csproj", "{81FDD5CE-F2C1-40B0-8C5C-920AC002516F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kae.XTUML.Tools.WpfAppDTDLGenerator", "Kae.XTUML.Tools.WpfAppDTDLGenerator\Kae.XTUML.Tools.WpfAppDTDLGenerator.csproj", "{37619B57-4D05-4D3E-9D8A-38BB2CE9DAC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{81FDD5CE-F2C1-40B0-8C5C-920AC002516F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81FDD5CE-F2C1-40B0-8C5C-920AC002516F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81FDD5CE-F2C1-40B0-8C5C-920AC002516F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37619B57-4D05-4D3E-9D8A-38BB2CE9DAC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37619B57-4D05-4D3E-9D8A-38BB2CE9DAC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37619B57-4D05-4D3E-9D8A-38BB2CE9DAC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37619B57-4D05-4D3E-9D8A-38BB2CE9DAC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
