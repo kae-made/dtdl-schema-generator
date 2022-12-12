@@ -170,7 +170,8 @@ namespace Kae.XTUML.Tools.WpfAppDTDLGenerator
             contextParams.SetOptionValue(DTDLGenerator.CPKeyDTDLNameSpace, tbDTDLNamespace.Text);
             contextParams.SetOptionValue(DTDLGenerator.CPKeyDTDLModelVersion, tbDTDLVersion.Text);
             contextParams.SetOptionValue(DTDLGenerator.CPKeyUseKeyLetterAsFileName, cbUseKeyLetter.IsChecked);
-            contextParams.SetOptionValue(DTDLGenerator.CPKeySuperSubRelationship, cbRelationshipDef.IsChecked==false);
+            contextParams.SetOptionValue(DTDLGenerator.CPKeySuperSubRelationship, cbRelationshipDef.IsChecked == false);
+            contextParams.SetOptionValue(DTDLGenerator.CPKeyGenFolderPath, (tbGenFolder.Text, true));
 
             var task = new Task(() =>
             {
@@ -178,6 +179,7 @@ namespace Kae.XTUML.Tools.WpfAppDTDLGenerator
                 generator.LoadMetaModel();
                 generator.LoadDomainModels();
                 generator.Generate();
+                tbLogger.LogInfo("Generated DTDL Files.");
 
                 RefleshGeneratedView();
             });
@@ -191,6 +193,7 @@ namespace Kae.XTUML.Tools.WpfAppDTDLGenerator
             if (dialog.ShowDialog()== CommonFileDialogResult.Ok)
             {
                 tbGenFolder.Text= dialog.FileName;
+                CheckStatus();
             }
         }
 
@@ -217,12 +220,37 @@ namespace Kae.XTUML.Tools.WpfAppDTDLGenerator
                     cbRelationshipDef.IsChecked = config.SSRelAsExtends;
                 }
                 buttonGenerate.IsEnabled = true;
+                CheckStatus();
             }
         }
 
-        private void buttonSaveConfig_Click(object sender, RoutedEventArgs e)
+        private async void buttonSaveConfig_Click(object sender, RoutedEventArgs e)
         {
-
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "JSON File|*.json";
+            if (dialog.ShowDialog() == true)
+            {
+                tbConfig.Text = dialog.FileName;
+                if (!string.IsNullOrEmpty(tbConfig.Text))
+                {
+                    using (var writer = new StreamWriter(tbConfig.Text))
+                    {
+                        var currentConfig = new GeneratorConfig()
+                        {
+                            MetaModel = tbMetaModel.Text,
+                            BaseDataType = tbBaseDataType.Text,
+                            DomainModel = tbDomainModel.Text,
+                            DTDLNamespace = tbDTDLNamespace.Text,
+                            DTDLVersion = tbDTDLVersion.Text,
+                            GenFolder = tbGenFolder.Text,
+                            UseKeyLetter = cbUseKeyLetter.IsChecked.Value,
+                            SSRelAsExtends = cbRelationshipDef.IsChecked.Value
+                        };
+                        string configJson = Newtonsoft.Json.JsonConvert.SerializeObject(currentConfig);
+                        await writer.WriteAsync(configJson);
+                    }
+                }
+            }
         }
     }
 

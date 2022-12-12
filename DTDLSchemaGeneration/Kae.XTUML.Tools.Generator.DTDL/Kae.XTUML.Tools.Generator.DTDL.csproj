@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>2.1.0</Version>
+    <Version>2.2.0</Version>
     <Authors>Hiroshi Ota</Authors>
     <Company>Knowledge &amp; Experience</Company>
     <PackageProjectUrl>https://github.com/kae-made/dtdl-schema-generator</PackageProjectUrl>
@@ -22,9 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kae.Tools.Generator" Version="6.4.0" />
-    <PackageReference Include="Kae.Utility.Logging" Version="1.0.0" />
-    <PackageReference Include="System.CodeDom" Version="6.0.0" />
+    <PackageReference Include="Kae.Tools.Generator" Version="6.5.0" />
+    <PackageReference Include="System.CodeDom" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

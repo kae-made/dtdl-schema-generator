@@ -10,6 +10,10 @@
 <#= indent #>{
 <#= indent #><#= indentDelta #>"@type": "<#= fieldType #>",
 <#
+	string descrip = "";
+	if (!string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
+	    descrip =  DTDLGenerator.GetDescription(oattrDef, oattrDef.Attr_Descrip);
+	}
 	string attrName = oattrDef.Attr_Name;
 	if (isExtendingClass && attrName == "current_state")
 	{
@@ -25,6 +29,15 @@
 #>
 <#= indent #><#= indentDelta #>"writable": false,
 <#
+	}
+	else
+	{
+		if (string.IsNullOrEmpty(descrip))
+		{
+#>
+<#= indent #><#= indentDelta #>"writable": true,
+<#
+		}
 	}
 #>
 <#
@@ -50,8 +63,7 @@
 <#= indent #><#= indentDelta #>"comment": "<#= comment #>"<#= endl #>
 <#
 	}
-	if (!string.IsNullOrEmpty(oattrDef.Attr_Descrip)) {
-	    string descrip =  DTDLGenerator.GetDescription(oattrDef, oattrDef.Attr_Descrip);
+	if (!string.IsNullOrEmpty(descrip)) {
 #>
 <#= indent #><#= indentDelta #>"description": "<#= descrip #>"
 <#

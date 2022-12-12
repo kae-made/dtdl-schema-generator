@@ -512,9 +512,10 @@ namespace Kae.XTUML.Tools.Generator.DTDL
                     UseKeyLettAsFileName = ((BooleanParam)c).Value;
                     index++;
                 }
-                else if (c.ParamName == CPKeySuperSubRelationship){
+                else if (c.ParamName == CPKeySuperSubRelationship)
+                {
                     var ssRel = ((BooleanParam)c).Value;
-                    if (ssRel)
+                    if (ssRel == false)
                     {
                         superSubMode = DTDLjson.R_SUPERSUB_Mode.Extends;
                     }
